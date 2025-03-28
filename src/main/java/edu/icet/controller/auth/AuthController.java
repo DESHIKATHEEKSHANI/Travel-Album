@@ -1,4 +1,4 @@
-package edu.icet.controller;
+package edu.icet.controller.auth;
 
 import edu.icet.dto.RegisterRequest;
 import edu.icet.service.AuthService;

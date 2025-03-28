@@ -1,4 +1,4 @@
-package edu.icet.service.impl;
+package edu.icet.service.impl.Auth;
 
 import edu.icet.dto.RegisterRequest;
 import edu.icet.entity.User;

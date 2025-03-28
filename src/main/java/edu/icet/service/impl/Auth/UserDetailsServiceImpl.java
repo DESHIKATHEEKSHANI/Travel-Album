@@ -1,4 +1,4 @@
-package edu.icet.service.impl;
+package edu.icet.service.impl.Auth;
 
 import edu.icet.entity.User;
 import edu.icet.repository.UserRepository;
@@ -8,8 +8,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
-import java.util.Collections;
 
 @Service // Ensure this annotation is present
 public class UserDetailsServiceImpl implements UserDetailsService {
