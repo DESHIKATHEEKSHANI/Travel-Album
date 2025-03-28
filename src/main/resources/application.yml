@@ -6,3 +6,8 @@ spring:
 jwt:
   secret: fdgfskwqubnsnjajkqknvbgKLQMNBbVSSFnjookv
   expiration: 86400000
+
+supabase:
+  url: https://klbydinkovwiemketazz.supabase.co
+  key: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtsYnlkaW5rb3Z3aWVta2V0YXp6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDMxOTIyMjQsImV4cCI6MjA1ODc2ODIyNH0.ledQTShIJfvU7-DPWCOHm2a98AMxRDsEHieYtwiVnY8
+  bucket: Travel Album
