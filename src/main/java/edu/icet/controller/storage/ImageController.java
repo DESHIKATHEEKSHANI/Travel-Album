@@ -1,25 +1,43 @@
 package edu.icet.controller.storage;
 
-import edu.icet.service.SupabaseStorageService;
-import org.springframework.beans.factory.annotation.Autowired;
+import edu.icet.dto.ImageResponseDTO;
+import edu.icet.service.SupabaseService;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import java.io.IOException;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/api/images")
+@Slf4j
 public class ImageController {
 
-    @Autowired
-    private SupabaseStorageService storageService;
+    private final SupabaseService supabaseService;
 
     @PostMapping("/upload")
-    public ResponseEntity<String> uploadImage(@RequestParam("file") MultipartFile file) {
+    public ResponseEntity<ImageResponseDTO> uploadImage(
+            @RequestParam("file") MultipartFile file,
+            @RequestParam("username") String username,
+            @RequestHeader("Authorization") String authHeader) {
+
+        log.info("Authorization header: {}", authHeader);
+
         try {
-            String imageUrl = storageService.uploadImage(file);
-            return ResponseEntity.ok(imageUrl);
+            // Verify the token is present
+            if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+            }
+
+            ImageResponseDTO response = supabaseService.uploadImage(file, username);
+            return ResponseEntity.ok(response);
+
         } catch (Exception e) {
-            return ResponseEntity.status(500).body("Error uploading image: " + e.getMessage());
+            log.error("Upload failed", e);
+            return ResponseEntity.internalServerError().build();
         }
     }
 }
