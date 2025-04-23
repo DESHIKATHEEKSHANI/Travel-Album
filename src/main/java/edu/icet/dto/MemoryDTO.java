@@ -15,5 +15,7 @@ public class MemoryDTO {
     private String description;
     private String imageUrl;
     private String username;
+    private String category;  // Added field
+    private boolean favorite; // Added field
     private Date createdAt;
 }

@@ -20,5 +20,8 @@ public class Memory {
     private String description;
     private String imageUrl;
     private String username;
+    private String category;
+    private boolean favorite;
     private Date createdAt;
+
 }

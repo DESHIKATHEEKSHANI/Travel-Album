@@ -31,6 +31,8 @@ public class MemoryUploadController {
             @RequestParam("location") String location,
             @RequestParam("date") String dateStr,
             @RequestParam("description") String description,
+            @RequestParam(value = "category", required = false) String category,
+            @RequestParam(value = "favorite", required = false, defaultValue = "false") boolean favorite,
             @RequestHeader("Authorization") String authHeader) {
 
         log.info("Creating new memory with image for user: {}", username);
@@ -55,6 +57,8 @@ public class MemoryUploadController {
             memoryDTO.setDate(date);
             memoryDTO.setDescription(description);
             memoryDTO.setImageUrl(imageResponse.getUrl());
+            memoryDTO.setCategory(category);
+            memoryDTO.setFavorite(favorite);
             memoryDTO.setCreatedAt(new Date());
 
             // 4. Save the memory
