@@ -85,6 +85,8 @@ public class MemoryServiceImpl implements MemoryService {
         memory.setDescription(dto.getDescription());
         memory.setImageUrl(dto.getImageUrl());
         memory.setUsername(dto.getUsername());
+        memory.setCategory(dto.getCategory());
+        memory.setFavorite(dto.isFavorite());
         memory.setCreatedAt(dto.getCreatedAt());
         return memory;
     }
@@ -97,6 +99,8 @@ public class MemoryServiceImpl implements MemoryService {
                 entity.getDescription(),
                 entity.getImageUrl(),
                 entity.getUsername(),
+                entity.getCategory(),
+                entity.isFavorite(),
                 entity.getCreatedAt()
         );
     }
