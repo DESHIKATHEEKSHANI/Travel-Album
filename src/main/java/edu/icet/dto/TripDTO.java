@@ -28,4 +28,40 @@ public class TripDTO {
     private PackingListDTO packingList = new PackingListDTO();
     private Date createdAt;
     private Date updatedAt;
+
+    @Data
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class AccommodationDTO {
+        private String name;
+        private String address;
+        private Date checkIn;
+        private Date checkOut;
+    }
+
+    @Data
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class ItineraryDayDTO {
+        private Date date;
+        private List<ActivityDTO> activities = new ArrayList<>();
+    }
+
+    @Data
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class ActivityDTO {
+        private String time;
+        private String name;
+        private String description;
+        private String location;
+    }
+
+    @Data
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class PackingListDTO {
+        private List<String> essentials = new ArrayList<>();
+        private List<String> clothing = new ArrayList<>();
+    }
 }

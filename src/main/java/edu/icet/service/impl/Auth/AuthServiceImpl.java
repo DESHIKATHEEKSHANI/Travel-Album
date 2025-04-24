@@ -56,4 +56,5 @@ public class AuthServiceImpl implements AuthService {
 
         return jwtService.generateToken(authentication);
     }
+
 }

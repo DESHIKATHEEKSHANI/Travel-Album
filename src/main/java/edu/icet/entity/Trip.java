@@ -33,4 +33,40 @@ public class Trip {
     private PackingList packingList = new PackingList();
     private Date createdAt;
     private Date updatedAt;
+
+    @Data
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class Accommodation {
+        private String name;
+        private String address;
+        private Date checkIn;
+        private Date checkOut;
+    }
+
+    @Data
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class ItineraryDay {
+        private Date date;
+        private List<Activity> activities = new ArrayList<>();
+    }
+
+    @Data
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class Activity {
+        private String time;
+        private String name;
+        private String description;
+        private String location;
+    }
+
+    @Data
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class PackingList {
+        private List<String> essentials;
+        private List<String> clothing;
+    }
 }
