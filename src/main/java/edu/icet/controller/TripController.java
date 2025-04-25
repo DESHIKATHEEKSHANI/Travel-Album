@@ -85,25 +85,32 @@ public class TripController {
         try {
             List<TripDTO> trips;
             if (username != null && !username.isEmpty()) {
-                switch (filter) {
-                    case "upcoming":
-                        trips = tripService.getUpcomingTrips(username);
-                        break;
-                    case "past":
-                        trips = tripService.getPastTrips(username);
-                        break;
-                    case "planning":
-                        trips = tripService.getPlanningTrips(username);
-                        break;
-                    default:
-                        trips = tripService.getTripsByUsername(username);
+                // Only apply filter if it's not null
+                if (filter != null && !filter.isEmpty()) {
+                    switch (filter) {
+                        case "upcoming":
+                            trips = tripService.getUpcomingTrips(username);
+                            break;
+                        case "past":
+                            trips = tripService.getPastTrips(username);
+                            break;
+                        case "planning":
+                            trips = tripService.getPlanningTrips(username);
+                            break;
+                        default:
+                            trips = tripService.getTripsByUsername(username);
+                            break;
+                    }
+                } else {
+                    // No filter provided, get all trips for the user
+                    trips = tripService.getTripsByUsername(username);
                 }
             } else {
                 trips = tripService.getAllTrips();
             }
             return ResponseEntity.ok(trips);
         } catch (Exception e) {
-            log.error("Failed to fetch trips", e);
+            log.error("Failed to fetch trips: {}", e.getMessage(), e);
             return ResponseEntity.internalServerError().build();
         }
     }
