@@ -1,5 +1,6 @@
 package edu.icet.service.impl.Auth;
 
+import edu.icet.dto.LoginResponse;
 import edu.icet.dto.RegisterRequest;
 import edu.icet.entity.User;
 import edu.icet.repository.UserRepository;
@@ -49,12 +50,18 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public String loginUser(String username, String password) {
+    public LoginResponse loginUser(String username, String password) {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(username, password)
         );
 
-        return jwtService.generateToken(authentication);
+        String token = jwtService.generateToken(authentication);
+
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        return new LoginResponse(token, user.getRole());
     }
+
 
 }

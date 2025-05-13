@@ -1,10 +1,14 @@
 package edu.icet.controller.auth;
 
+import edu.icet.dto.LoginResponse;
 import edu.icet.dto.RegisterRequest;
 import edu.icet.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -19,11 +23,7 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> loginUser(
-            @RequestParam String username,
-            @RequestParam String password
-    ) {
-        String token = authService.loginUser(username, password);
-        return ResponseEntity.ok(token);
+    public LoginResponse login(@RequestParam String username, @RequestParam String password) {
+        return authService.loginUser(username, password);
     }
 }
